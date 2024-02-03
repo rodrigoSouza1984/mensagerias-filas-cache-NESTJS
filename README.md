@@ -1,3 +1,38 @@
+
+Projeto de Estudo 
+
+**************
+REDIS
+
+Cache com Redis
+
+Filas com Redis
+
+Pub/Sub com redi
+
+*************
+
+BULL e Redis
+
+Filas usando Bull e Redis
+
+****************
+RabbiMQ
+
+RabbitMQ para filas
+
+##########################
+
+rodar o projeto
+
+docker-compose build
+
+docker-compose up -d
+
+criar banco de dados => pub_sub_com_redis
+
+npm run start:dev
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
