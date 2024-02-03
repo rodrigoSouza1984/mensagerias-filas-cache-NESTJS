@@ -1,11 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req, Query } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
+
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService ) {}
+
+  @Get('pubSubRedisTest')
+  pubSubRedisTest() {      
+    return this.userService.pubSubRedisTest();
+  }
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
@@ -13,8 +19,9 @@ export class UserController {
   }
 
   @Get()
-  findAll() {
-    return this.userService.findAll();
+  findAll(@Req() request: any) {
+    const keyName = `${request.path}${JSON.stringify(request.query)}`    
+    return this.userService.findAll(keyName);
   }
 
   @Get(':userId')
@@ -31,4 +38,10 @@ export class UserController {
   remove(@Param('userId') userId: number) {
     return this.userService.remove(userId);
   }
+ 
+  @Post('addUserInfila')
+  addUserInfila(@Body() createUserDto: CreateUserDto) {
+    return this.userService.addUserInfila(createUserDto);
+  }
+  
 }

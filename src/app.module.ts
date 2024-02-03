@@ -4,6 +4,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
+import { RedisModule } from './redis/redis.module';
+import { QueueProcessorModule } from './filasProcessor/QueueProcessor.module';
+import { UserBullModule } from './user-bull/user-bull.module';
+import { FilasBullModule } from './bull-filas/filas-bull.module';
+import { RabbitModule } from './rabbit/rabbit.module';
+
 
 @Module({
   imports: [
@@ -22,8 +28,14 @@ import { UserModule } from './user/user.module';
       }),
     }),   
     UserModule,
+    RedisModule,
+    QueueProcessorModule,
+    UserBullModule,
+    FilasBullModule,
+    RabbitModule,    
   ],
   controllers: [AppController],
   providers: [AppService],
+    
 })
 export class AppModule {}
