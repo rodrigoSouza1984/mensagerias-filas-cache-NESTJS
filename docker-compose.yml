@@ -1,26 +1,6 @@
 version: '3.7'
 
 services:
-  # MySQL 8 service
-  # db:
-  #   image: mysql:8.0
-  #   command: --default-authentication-plugin=mysql_native_password
-  #   container_name: mysql-container
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: 123456     
-  #   volumes:
-  #     - data:/var/lib/mysql 
-  #   restart: always # Volume para persistir os dados do MySQL
-
-  # init-mysql:
-  #   build: .
-  #   command: ./init-mysql.sh
-  #   depends_on:
-  #     - db
-  #   volumes:
-  #     - ./init-mysql.sh:/init-mysql.sh
-  #   restart: "no"
-
   # Redis service
   redis:
     image: redis
@@ -35,21 +15,7 @@ services:
       - 5672:5672
     environment:
       - RABBITMQ_DEFAULT_USER=admin
-      - RABBITMQ_DEFAULT_PASS=admin 
-  
-  # NestJS service
-  # nestjs:
-  #   build: 
-  #     context: .
-  #     dockerfile: Dockerfile # Caminho para o Dockerfile do NestJS
-  #   restart: always
-  #   ports:
-  #     - "3000:3000" # Mapeamento da porta do host para a porta do contêiner
-  #   depends_on:
-  #     - db
-  #     - redis
-  #   env_file:
-  #     - .env
+      - RABBITMQ_DEFAULT_PASS=admin
 
 volumes:
   data:
